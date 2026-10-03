@@ -50,6 +50,7 @@ int main()
 
     // Удаление объекта, созданного через new.
     delete externalGene;
+    externalGene = nullptr;
 
 
     std::cout << "\n=== Проверка правила ===\n";
@@ -72,6 +73,7 @@ int main()
     dynamicGene->PrintInfo();
 
     delete dynamicGene;
+    dynamicGene = nullptr;
 
 
     std::cout << "\n=== Ссылка и указатель ===\n";
@@ -101,10 +103,23 @@ int main()
         Gene("Gene2", "ATGC")
     };
 
+    std::cout << "\n=== Динамический массив объектов ===\n";
 
-    std::cout << "\n=== Динамический массив ===\n";
+    // Динамический массив объектов класса.
+    Gene* dynamicArray = new Gene[2]
+    {
+        Gene("ArrayGene1", "ATGC"),
+        Gene("ArrayGene2", "ATGC")
+    };
 
-    // Массив динамических объектов.
+    dynamicArray[0].PrintInfo();
+    dynamicArray[1].PrintInfo();
+
+    delete[] dynamicArray;
+
+    std::cout << "\n=== Массив динамических объектов ===\n";
+
+    // Массив указателей на динамически созданные объекты.
     Gene** dynamicGenes = new Gene*[2];
 
     dynamicGenes[0] = new Gene("GeneA", "ATGC");
